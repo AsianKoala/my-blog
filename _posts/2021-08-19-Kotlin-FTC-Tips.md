@@ -2,13 +2,12 @@
 toc: true
 layout: post
 description: Tips and tricks for integrating Kotlin into your FTC projects.
-categories: [markdown]
+categories: [FTC, Kotlin]
 title: FTC Kotlin Tips & Tricks
 ---
 
-### Neil Mehra  
-
-### August 19, 2021
+<h3>Neil Mehra</h3> 
+<h3> August 19, 2021 </h3>
 <p>
 </p>
 
