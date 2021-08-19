@@ -132,18 +132,14 @@ window.onload = wrap_img;
 
 <p>First, we have to enable the Kotlin plugin in our root level gradle files. Navigate to <code>./build.gradle</code> and add this line to your buildscript</p>
 
-<blockquote>
-  <p><code>ext.kotlin_version = '1.5.21'</code></p>
-</blockquote>
+<p><code>ext.kotlin_version = '1.5.21'</code></p>
 
 <p><strong><em>Note:</em></strong> - at the time of writing 1.5.21 is the latest Kotlin release.</p>
 
 <p>This creates an environment variable with name ‘kotlin_version’ and value ‘1.5.21’ so we don’t have to re-type the release version.</p>
 
-<p>Next, add the Kotlin plugin to the dependencies block with this line</p>
-<blockquote>
-  <p><code>classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"</code></p>
-</blockquote>
+<p>Next, add the Kotlin plugin to the dependencies block with this line<br>
+<code>classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"</code></p>
 
 <p>If you haven’t already, make sure the language level of the Java source code and version of the generated Java bytecode are 1.8 (JDK 8). Open up <code>build.common.gradle</code> and check if your <code>compileOptions</code> block looks like this</p>
 
@@ -155,15 +151,11 @@ window.onload = wrap_img;
 
 <p>Once that’s finished, all that’s left to do is to enable the <code>kotlin-android</code> and the <code>kotlin-stdlib-jdk8</code> plugins. Head over to the <code>build.gradle</code> of any modules you want to use Kotlin in.</p>
 
-<p>Personally, I have Kotlin enabled in both the TeamCode and FTCRobotController modules as I converted the Java sample code that the FTC SDK provides to Kotlin to introduce my jr programmer to the SDK and Kotlin at the same time. Add the following definition to the top of your <code>build.gradle</code> file.</p>
-<blockquote>
-  <p><code>apply plugin: 'kotlin-android'</code></p>
-</blockquote>
+<p>Personally, I have Kotlin enabled in both the TeamCode and FTCRobotController modules as I converted the Java sample code that the FTC SDK provides to Kotlin to introduce my jr programmer to the SDK and Kotlin at the same time. Add the following definition to the top of your <code>build.gradle</code> file.
+<code>apply plugin: 'kotlin-android'</code></p>
 
-<p>Then add this line to your dependencies block.</p>
-<blockquote>
-  <p><code>implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"</code></p>
-</blockquote>
+<p>Then add this line to your dependencies block.<br>
+<code>implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"</code></p>
 
 <p>Sync your gradle changes and then you’re all good.</p>
 
