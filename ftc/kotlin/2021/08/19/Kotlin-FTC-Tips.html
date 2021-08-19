@@ -117,7 +117,20 @@ window.onload = wrap_img;
 <li class="toc-entry toc-h3"><a href="#-august-19-2021-"> August 19, 2021 </a></li>
 <li class="toc-entry toc-h2"><a href="#enabling-kotlin">Enabling Kotlin</a></li>
 <li class="toc-entry toc-h2"><a href="#converting-your-codebase-to-kotlin">Converting your codebase to Kotlin</a></li>
-<li class="toc-entry toc-h2"><a href="#tips--tricks">Tips &amp; Tricks</a></li>
+<li class="toc-entry toc-h2"><a href="#tips--tricks">Tips &amp; Tricks</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#data-classes">Data Classes</a></li>
+<li class="toc-entry toc-h3"><a href="#custom-getterssetters">Custom getters/setters</a></li>
+<li class="toc-entry toc-h3"><a href="#extension-functions">Extension Functions</a></li>
+<li class="toc-entry toc-h3"><a href="#null-safety">Null Safety</a></li>
+<li class="toc-entry toc-h3"><a href="#kotlinmath">kotlin.math</a></li>
+<li class="toc-entry toc-h3"><a href="#operator-overloading">Operator Overloading</a></li>
+<li class="toc-entry toc-h3"><a href="#infix-functions">Infix Functions</a></li>
+<li class="toc-entry toc-h3"><a href="#when-statement">When Statement</a></li>
+<li class="toc-entry toc-h3"><a href="#break-labels">Break labels</a></li>
+<li class="toc-entry toc-h3"><a href="#java-interoperability">Java Interoperability</a></li>
+</ul>
+</li>
 </ul><h3>
 <a class="anchor" href="#neil-mehra" aria-hidden="true"><span class="octicon octicon-link"></span></a>Neil Mehra</h3>
 <h3>
@@ -173,16 +186,19 @@ window.onload = wrap_img;
 <a class="anchor" href="#tips--tricks" aria-hidden="true"><span class="octicon octicon-link"></span></a>Tips &amp; Tricks</h2>
 <ol>
   <li>
-    <p>Data Classes<br>
- Whenever you have classes that are only for holding data, such as a <code>Vector</code> or <code>Point</code> class, turn them into a <code>data class</code>. Data classes contain automatically generated functions that are derived from the constructor fields, which makes life simpler. You can also do cool things with data classes like this:<br>
+    <h3 id="data-classes">
+<a class="anchor" href="#data-classes" aria-hidden="true"><span class="octicon octicon-link"></span></a>Data Classes</h3>
+    <p>Whenever you have classes that are only for holding data, such as a <code>Vector</code> or <code>Point</code> class, turn them into a <code>data class</code>. Data classes contain automatically generated functions that are derived from the constructor fields, which makes life simpler. You can also do cool things with data classes like this:<br>
  <code> val (x, y) = Point(1.0, 2.0)</code></p>
   </li>
-  <li>Custom getters/setters<br>
- I remember during one of my first days after switching to Kotlin, I spent an entire meeting trying to debug a StackOverflowError that made no sense at all. It was erroring at a ‘simple’ variable that should never have errored, right? Or so I thought. The error was pointing to this simple line:<br>
+  <li>
+    <h3 id="custom-getterssetters">
+<a class="anchor" href="#custom-getterssetters" aria-hidden="true"><span class="octicon octicon-link"></span></a>Custom getters/setters</h3>
+    <p>I remember during one of my first days after switching to Kotlin, I spent an entire meeting trying to debug a StackOverflowError that made no sense at all. It was erroring at a ‘simple’ variable that should never have errored, right? Or so I thought. The error was pointing to this simple line:<br>
  <code>val dbNormalize = Point(-y, x)</code><br>
  At first glance it looks like a completely valid piece of code, but the field was actually declared in the <code>Point</code> data class. The Java equivalent of this would be perfectly valid, but for this you need to specify a custom getter like this:<br>
  <code> val dbNormalize get() = Point(-y, x)</code><br>
- The full form of any Kotlin field is as follows:
+ The full form of any Kotlin field is as follows:</p>
     <div class="language-plaintext highlighter-rouge">
 <div class="highlight"><pre class="highlight"><code> val foo:type = type(a, b, c...)  
      get() = field  
@@ -191,8 +207,10 @@ window.onload = wrap_img;
  }
 </code></pre></div>    </div>
   </li>
-  <li>Extension Functions<br>
- Extension functions were the thing that really made me feel good about switching to Kotlin. The amount of flexibility it offers is amazing. They provide you to define custom functions for any class but “extending” it. This also applies to fields/properties. For example, look at the following example. In FTC angle math is used a lot, and we always want to make sure that the angles we use are between some specified bounds, usually between -π and π.
+  <li>
+    <h3 id="extension-functions">
+<a class="anchor" href="#extension-functions" aria-hidden="true"><span class="octicon octicon-link"></span></a>Extension Functions</h3>
+    <p>Extension functions were the thing that really made me feel good about switching to Kotlin. The amount of flexibility it offers is amazing. They provide you to define custom functions for any class but “extending” it. This also applies to fields/properties. For example, look at the following example. In FTC angle math is used a lot, and we always want to make sure that the angles we use are between some specified bounds, usually between -π and π.</p>
     <div class="language-plaintext highlighter-rouge">
 <div class="highlight"><pre class="highlight"><code> fun Double.wrap(): Double {  
      angle = this
@@ -218,8 +236,9 @@ window.onload = wrap_img;
 </code></pre></div>    </div>
   </li>
   <li>
-    <p>Null Safety<br>
- Kotlin is supposed to be safe, so what does it do with the dreaded null-types? Simple, nothing can be null unless specifically stated, and even if it is null, there are compile-time checks to make sure nothing goes haywire. To declare a variable as possibly null, you add the <code>?</code> to the end of the type declaration, like this.<br>
+    <h3 id="null-safety">
+<a class="anchor" href="#null-safety" aria-hidden="true"><span class="octicon octicon-link"></span></a>Null Safety</h3>
+    <p>Kotlin is supposed to be safe, so what does it do with the dreaded null-types? Simple, nothing can be null unless specifically stated, and even if it is null, there are compile-time checks to make sure nothing goes haywire. To declare a variable as possibly null, you add the <code>?</code> to the end of the type declaration, like this.<br>
  <code>var foo: String? = "abc"</code><br>
  But what happens if it is null? At compile time if you ever access <code>foo</code> without checking if it’s null, Kotlin will throw a “can possibly be null” error. The correct way to access <code>foo</code> would be like this.<br>
  <code>val length = foo?.length ?: -1</code><br>
@@ -229,11 +248,14 @@ window.onload = wrap_img;
  <code>val l = b!!.length</code></p>
   </li>
   <li>
-    <p>kotlin.math<br>
- This is a short one, but the built in extension functions in the kotlin.math class feel really good to use, such as the <code>Double.sign</code> extension field or the <code>Double.exp</code> function.</p>
+    <h3 id="kotlinmath">
+<a class="anchor" href="#kotlinmath" aria-hidden="true"><span class="octicon octicon-link"></span></a>kotlin.math</h3>
+    <p>This is a short one, but the built in extension functions in the kotlin.math class feel really good to use, such as the <code>Double.sign</code> extension field or the <code>Double.exp</code> function.</p>
   </li>
-  <li>Operator Overloading<br>
- Operator overloading is a must know for anyone who frequently uses any sort of data class such as the aforementioned <code>Vector</code> or <code>Point</code> data classes. Basic unary/binary operators such as the increment operator or the adding operator can be overloaded with your custom definition. Let me just show how much cleaner it is.
+  <li>
+    <h3 id="operator-overloading">
+<a class="anchor" href="#operator-overloading" aria-hidden="true"><span class="octicon octicon-link"></span></a>Operator Overloading</h3>
+    <p>Operator overloading is a must know for anyone who frequently uses any sort of data class such as the aforementioned <code>Vector</code> or <code>Point</code> data classes. Basic unary/binary operators such as the increment operator or the adding operator can be overloaded with your custom definition. Let me just show how much cleaner it is.</p>
     <div class="language-plaintext highlighter-rouge">
 <div class="highlight"><pre class="highlight"><code> data class Point(var x: Int, var y: Int) {
      operator fun plus(p: Point) = Point(x + p.x, y + p.y)
@@ -257,8 +279,10 @@ window.onload = wrap_img;
  -5, -5
 </code></pre></div>    </div>
   </li>
-  <li>Infix Functions<br>
- Can’t talk about operator overloading without mentioning infix functions. Infix functions are functions that can be called without the dot. I’m not that much of a fan of this due to the possible danger of making stuff so simple that it gets way too overcomplicated, but it does have its uses. Sometimes when I want to approximate something equal to another, I would previously have to do this: <code>Math.abs(a-b) &lt; 1e6 </code>, but with infix notation it becomes a lot cleaner.
+  <li>
+    <h3 id="infix-functions">
+<a class="anchor" href="#infix-functions" aria-hidden="true"><span class="octicon octicon-link"></span></a>Infix Functions</h3>
+    <p>Can’t talk about operator overloading without mentioning infix functions. Infix functions are functions that can be called without the dot. I’m not that much of a fan of this due to the possible danger of making stuff so simple that it gets way too overcomplicated, but it does have its uses. Sometimes when I want to approximate something equal to another, I would previously have to do this: <code>Math.abs(a-b) &lt; 1e6 </code>, but with infix notation it becomes a lot cleaner.</p>
     <div class="language-plaintext highlighter-rouge">
 <div class="highlight"><pre class="highlight"><code> infix fun Double.epsilonEquals(a: Double): Boolean {
      return if(this.isInfinite()) 
@@ -276,8 +300,10 @@ window.onload = wrap_img;
  Output: true
 </code></pre></div>    </div>
   </li>
-  <li>When Statement<br>
- Using the when statement is like saying goodbye to the <code>if</code> and <code>switch</code> (well, Kotlin doesn’t have a switch statement anyway) statements: you’ll never want to go back again. Just look at this example in my FTC Angle data class and you’ll understand what I mean.
+  <li>
+    <h3 id="when-statement">
+<a class="anchor" href="#when-statement" aria-hidden="true"><span class="octicon octicon-link"></span></a>When Statement</h3>
+    <p>Using the when statement is like saying goodbye to the <code>if</code> and <code>switch</code> (well, Kotlin doesn’t have a switch statement anyway) statements: you’ll never want to go back again. Just look at this example in my FTC Angle data class and you’ll understand what I mean.</p>
     <div class="language-plaintext highlighter-rouge">
 <div class="highlight"><pre class="highlight"><code> val deg: Double
      get() = when(unit) {
@@ -297,8 +323,10 @@ window.onload = wrap_img;
 </code></pre></div>    </div>
     <p>See what I mean?</p>
   </li>
-  <li>Break labels<br>
- Oftentimes I found myself annoyed with Java not having a specific break when inside nested statements/loops. Kotlin solves this annoyance with <code>labels</code>. Labels can annotate an expression, and breaks/returns can then jump straight to that label when that label is called.
+  <li>
+    <h3 id="break-labels">
+<a class="anchor" href="#break-labels" aria-hidden="true"><span class="octicon octicon-link"></span></a>Break labels</h3>
+    <p>Oftentimes I found myself annoyed with Java not having a specific break when inside nested statements/loops. Kotlin solves this annoyance with <code>labels</code>. Labels can annotate an expression, and breaks/returns can then jump straight to that label when that label is called.</p>
     <div class="language-plaintext highlighter-rouge">
 <div class="highlight"><pre class="highlight"><code> mainLoop@ for(i in 1..100) {
      for(j in 1..100) {
@@ -308,8 +336,11 @@ window.onload = wrap_img;
 </code></pre></div>    </div>
     <p>Upon that nested <code>if</code> being fulfilled, the program will break out of both for loops.</p>
   </li>
-  <li>Java Interoperability<br>
-Last but not least is Kotlin being fully compatible with Java. Any libraries written in Java can be used in Kotlin without any trouble, and any Kotlin classes can be used in Java with some extra annotations. Any Kotlin fields that are being used in a Java class must be labled with the <code>@JVMField</code> annotation, or with the <code>@JVMStatic</code> annotation if it’s a static field.</li>
+  <li>
+    <h3 id="java-interoperability">
+<a class="anchor" href="#java-interoperability" aria-hidden="true"><span class="octicon octicon-link"></span></a>Java Interoperability</h3>
+    <p>Last but not least is Kotlin being fully compatible with Java. Any libraries written in Java can be used in Kotlin without any trouble, and any Kotlin classes can be used in Java with some extra annotations. Any Kotlin fields that are being used in a Java class must be labled with the <code>@JVMField</code> annotation, or with the <code>@JVMStatic</code> annotation if it’s a static field.</p>
+  </li>
 </ol>
 
 <p>Thanks for reading, if you have any comments or concerns you can reach me at <a href="mailto:%20neilmehra@outlook.com">my email</a>.</p>
