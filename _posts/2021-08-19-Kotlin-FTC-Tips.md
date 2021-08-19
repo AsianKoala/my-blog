@@ -55,11 +55,11 @@ If you're apprehensive about the how long it'll take to rewrite everything, don'
 Now that you have Kotlin files to work with, let me give some tips so that I wish I knew back when I started developing in Kotlin.
 
 ## Tips & Tricks
-1. Data Classes  
+1. ### Data Classes  
     Whenever you have classes that are only for holding data, such as a <code>Vector</code> or <code>Point</code> class, turn them into a <code>data class</code>. Data classes contain automatically generated functions that are derived from the constructor fields, which makes life simpler. You can also do cool things with data classes like this:  
     <code> val (x, y) = Point(1.0, 2.0)</code>  
 
-2. Custom getters/setters  
+2. ### Custom getters/setters  
     I remember during one of my first days after switching to Kotlin, I spent an entire meeting trying to debug a StackOverflowError that made no sense at all. It was erroring at a 'simple' variable that should never have errored, right? Or so I thought. The error was pointing to this simple line:  
     <code>val dbNormalize = Point(-y, x)</code>  
     At first glance it looks like a completely valid piece of code, but the field was actually declared in the <code>Point</code> data class. The Java equivalent of this would be perfectly valid, but for this you need to specify a custom getter like this:  
@@ -73,7 +73,7 @@ Now that you have Kotlin files to work with, let me give some tips so that I wis
     }
     ~~~ 
 
-3. Extension Functions  
+3. ### Extension Functions  
     Extension functions were the thing that really made me feel good about switching to Kotlin. The amount of flexibility it offers is amazing. They provide you to define custom functions for any class but "extending" it. This also applies to fields/properties. For example, look at the following example. In FTC angle math is used a lot, and we always want to make sure that the angles we use are between some specified bounds, usually between -π and π.  
     ~~~
     fun Double.wrap(): Double {  
@@ -99,7 +99,7 @@ Now that you have Kotlin files to work with, let me give some tips so that I wis
     Output: -180.0
     ~~~
 
-4. Null Safety  
+4. ### Null Safety  
     Kotlin is supposed to be safe, so what does it do with the dreaded null-types? Simple, nothing can be null unless specifically stated, and even if it is null, there are compile-time checks to make sure nothing goes haywire. To declare a variable as possibly null, you add the <code>?</code> to the end of the type declaration, like this.  
     <code>var foo: String? = "abc"</code>  
     But what happens if it is null? At compile time if you ever access <code>foo</code> without checking if it's null, Kotlin will throw a "can possibly be null" error. The correct way to access <code>foo</code> would be like this.  
@@ -109,10 +109,10 @@ Now that you have Kotlin files to work with, let me give some tips so that I wis
     And if you really do love having Null Pointer Exceptions, you can assert that a field is not null with <code>!!</code>. Ex:  
     <code>val l = b!!.length</code>
 
-5. kotlin.math  
+5. ### kotlin.math  
     This is a short one, but the built in extension functions in the kotlin.math class feel really good to use, such as the <code>Double.sign</code> extension field or the <code>Double.exp</code> function.
 
-6. Operator Overloading  
+6. ### Operator Overloading  
     Operator overloading is a must know for anyone who frequently uses any sort of data class such as the aforementioned <code>Vector</code> or <code>Point</code> data classes. Basic unary/binary operators such as the increment operator or the adding operator can be overloaded with your custom definition. Let me just show how much cleaner it is.  
     ~~~
     data class Point(var x: Int, var y: Int) {
@@ -137,7 +137,7 @@ Now that you have Kotlin files to work with, let me give some tips so that I wis
     -5, -5
     ~~~
 
-7. Infix Functions  
+7. ### Infix Functions  
     Can't talk about operator overloading without mentioning infix functions. Infix functions are functions that can be called without the dot. I'm not that much of a fan of this due to the possible danger of making stuff so simple that it gets way too overcomplicated, but it does have its uses. Sometimes when I want to approximate something equal to another, I would previously have to do this: <code>Math.abs(a-b) < 1e6 </code>, but with infix notation it becomes a lot cleaner.
     ~~~
     infix fun Double.epsilonEquals(a: Double): Boolean {
@@ -156,7 +156,7 @@ Now that you have Kotlin files to work with, let me give some tips so that I wis
     Output: true
     ~~~
 
-8. When Statement  
+8. ### When Statement  
     Using the when statement is like saying goodbye to the <code>if</code> and <code>switch</code> (well, Kotlin doesn't have a switch statement anyway) statements: you'll never want to go back again. Just look at this example in my FTC Angle data class and you'll understand what I mean.
     ~~~
     val deg: Double
@@ -177,7 +177,7 @@ Now that you have Kotlin files to work with, let me give some tips so that I wis
     ~~~  
     See what I mean?
 
-9. Break labels  
+9. ### Break labels  
     Oftentimes I found myself annoyed with Java not having a specific break when inside nested statements/loops. Kotlin solves this annoyance with <code>labels</code>. Labels can annotate an expression, and breaks/returns can then jump straight to that label when that label is called.
     ~~~
     mainLoop@ for(i in 1..100) {
@@ -188,7 +188,7 @@ Now that you have Kotlin files to work with, let me give some tips so that I wis
     ~~~
     Upon that nested <code>if</code> being fulfilled, the program will break out of both for loops.
 
-10. Java Interoperability  
+10. ### Java Interoperability  
     Last but not least is Kotlin being fully compatible with Java. Any libraries written in Java can be used in Kotlin without any trouble, and any Kotlin classes can be used in Java with some extra annotations. Any Kotlin fields that are being used in a Java class must be labled with the <code>@JVMField</code> annotation, or with the <code>@JVMStatic</code> annotation if it's a static field.  
 
 
