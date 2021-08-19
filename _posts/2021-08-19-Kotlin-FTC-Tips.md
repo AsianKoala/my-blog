@@ -6,8 +6,8 @@ categories: [FTC, Kotlin]
 title: FTC Kotlin Tips & Tricks
 ---
 
-<h3>Neil Mehra</h3> 
-<h3> August 19, 2021 </h3>
+<h>Neil Mehra</h>  
+<h>August 19, 2021</h>
 <p>
 </p>
 
