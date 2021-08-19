@@ -17,14 +17,14 @@ Kotlin is a statically typed, modern, concise JVM language that is designed to b
 
 First, we have to enable the Kotlin plugin in our root level gradle files. Navigate to <code>./build.gradle</code> and add this line to your buildscript
 
-><code>ext.kotlin_version = '1.5.21'</code>
+<code>ext.kotlin_version = '1.5.21'</code>
 
 **_Note:_** - at the time of writing 1.5.21 is the latest Kotlin release.
 
 This creates an environment variable with name 'kotlin_version' and value '1.5.21' so we don't have to re-type the release version.  
 
 Next, add the Kotlin plugin to the dependencies block with this line  
-><code>classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"</code>
+<code>classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"</code>
 
 If you haven't already, make sure the language level of the Java source code and version of the generated Java bytecode are 1.8 (JDK 8). Open up <code>build.common.gradle</code> and check if your <code>compileOptions</code> block looks like this
 
@@ -38,10 +38,10 @@ compileOptions {
 Once that's finished, all that's left to do is to enable the <code>kotlin-android</code> and the <code>kotlin-stdlib-jdk8</code> plugins. Head over to the <code>build.gradle</code> of any modules you want to use Kotlin in. 
 
 Personally, I have Kotlin enabled in both the TeamCode and FTCRobotController modules as I converted the Java sample code that the FTC SDK provides to Kotlin to introduce my jr programmer to the SDK and Kotlin at the same time. Add the following definition to the top of your <code>build.gradle</code> file.
-><code>apply plugin: 'kotlin-android'</code>  
+<code>apply plugin: 'kotlin-android'</code>  
 
 Then add this line to your dependencies block.  
-><code>implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"</code>  
+<code>implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"</code>  
   
 Sync your gradle changes and then you're all good. 
 
