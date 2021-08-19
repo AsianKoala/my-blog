@@ -6,11 +6,6 @@ categories: [FTC, Kotlin]
 title: FTC Kotlin Tips & Tricks
 ---
 
-<h>Neil Mehra</h>  
-<h>August 19, 2021</h>
-<p>
-</p>
-
 Kotlin is a statically typed, modern, concise JVM language that is designed to be fully interoperable with Java. In FTC, the most popular motion planning library, <a href=https://learnroadrunner.com/>Road Runner,</a> is written in Kotlin. 
 
 ## Enabling Kotlin
