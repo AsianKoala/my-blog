@@ -47,7 +47,7 @@ Sync your gradle changes and then you're all good.
 
 If you're apprehensive about the how long it'll take to rewrite everything, don't worry. As Kotlin was designed to be fully functional with Java, Java source code can actually be converted directly into readable Kotlin code. Head over to Android Studio and press <code>ctrl+alt+shift+K</code> while a Java file is open to convert it to Kotlin.  
 
-Now that you have Kotlin files to work with, let me give some tips so that I wish I knew back when I started developing in Kotlin.
+Now that you have Kotlin files to work with, let me give some basic functionalities that I wish I knew back when I started developing in Kotlin.
 
 ## Tips & Tricks
 1. ### Data Classes  
