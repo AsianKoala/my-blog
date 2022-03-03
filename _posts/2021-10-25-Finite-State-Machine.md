@@ -1,12 +1,12 @@
 ---
 toc: true
 layout: post
-description: Learn how to utilize Finite State Machines in FTC Part 1
+description: Learn how to utilize Finite State Machines in Part 1
 categories: [FTC, Kotlin]
-title: Finite State Machines in FTC
+title: Finite State Machines
 ---
 
-A common problem new programmers face in FTC is running a several complex seriesof actions asynchrounously. Finite state machines (FSMs) are often used to solvethis. FSMs are literally as they sound: machines that have states. At any time, the FSM runs a single state. On completion of this state, this FSM will iterate to the next state. This repeats until the last state in the FSM has been completed.
+A common problem new programmers face in robotics is running a several complex seriesof actions asynchrounously. Finite state machines (FSMs) are often used to solvethis. FSMs are literally as they sound: machines that have states. At any time, the FSM runs a single state. On completion of this state, this FSM will iterate to the next state. This repeats until the last state in the FSM has been completed.
 
 
 ## Defining our expectations
