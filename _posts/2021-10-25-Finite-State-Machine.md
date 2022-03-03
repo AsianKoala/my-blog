@@ -2,7 +2,7 @@
 toc: true
 layout: post
 description: Learn how to utilize Finite State Machines in Part 1
-categories: [FTC, Kotlin]
+categories: [Robotics, Kotlin]
 title: Finite State Machines
 ---
 
@@ -112,7 +112,7 @@ Our next function, update() is also fairly straightforward. Update is called per
 
 The last function of the StateMachine class is our transition() function. This is called when the currentState's transition condition is true in the update() method. The function first runs all the exitActions of the currentState, and then sets currentState = to the next state in stateList. As I implemented currentState to be <T>, I used stateList.indexOf(currentState) to find the current state in the stateList, but currentState as an index would simply be currentState++. Then, we run all the enterActions of the newState, which is our currentState.
 
-And that's it! You can now use your StateMachine class to program complicated movements on your robots that might've otherwise taken hours of frustration in a much shorter timeframe. I'll soon write a post on how to implement the builder method to quickly create a stateList effortlessly. In the meanwhile, I'll add a small code snippet displaying how the builder pattern works in my FTC programming ecosystem. Good luck!
+And that's it! You can now use your StateMachine class to program complicated movements on your robots that might've otherwise taken hours of frustration in a much shorter timeframe. I'll soon write a post on how to implement the builder method to quickly create a stateList effortlessly. In the meanwhile, I'll add a small code snippet displaying how the builder pattern works in my state machine implementation. Good luck!
 
 ```
 val IntakeEnum {
