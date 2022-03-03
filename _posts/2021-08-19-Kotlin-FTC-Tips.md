@@ -2,7 +2,7 @@
 toc: true
 layout: post
 description: Tips and tricks for integrating Kotlin into your FTC projects.
-categories: [FTC, Kotlin]
+categories: [FTC, Kotlin, Robotics]
 title: FTC Kotlin Tips & Tricks
 ---
 
