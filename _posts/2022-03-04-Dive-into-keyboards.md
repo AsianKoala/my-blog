@@ -1,9 +1,9 @@
 ---
 toc: true
 layout: post
-description: Quick run through of my build experience with the Space80:Apollo by Graystudio
+description: History of my experiences going through the keyboard hobby
 categories: [Keyboards, Computers]
-title: Building my Space80:Apollo by Graystudio
+title: My endeavours in the keyboard hobby
 ---
 
 ## Introduction 
