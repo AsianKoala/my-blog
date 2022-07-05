@@ -220,22 +220,26 @@ Type exit, and then press Enter to close the Command Prompt window.</li>
 
 <p>Enter iwctl with this:</p>
 
-<p><code class="language-plaintext highlighter-rouge"># iwctl</code></p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># iwctl
+</code></pre></div></div>
 
 <p>Then find your WiFi device from the device list:</p>
 
-<p><code class="language-plaintext highlighter-rouge">[iwd]# device list</code></p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[iwd]# device list
+</code></pre></div></div>
 
 <p>In my case, it was wlan60</p>
 
 <p>And get the network name:</p>
 
-<p><code class="language-plaintext highlighter-rouge">[iwd]# station DEVICE-NAME scan</code>
-<code class="language-plaintext highlighter-rouge">[iwd]# station DEVICE-NAME get-networks</code></p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[iwd]# station DEVICE-NAME scan
+[iwd]# station DEVICE-NAME get-networks
+</code></pre></div></div>
 
 <p>Finally, connect to the desired network:</p>
 
-<p><code class="language-plaintext highlighter-rouge">[iwd]# station DEVICE-NAME connect NETWORK-NAME</code></p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[iwd]# station DEVICE-NAME connect NETWORK-NAME
+</code></pre></div></div>
 
 <p>This will prompt you for the network password.</p>
 
@@ -245,7 +249,8 @@ Type exit, and then press Enter to close the Command Prompt window.</li>
 
 <p>To verify your connection, use <code class="language-plaintext highlighter-rouge">ping</code></p>
 
-<p><code class="language-plaintext highlighter-rouge"># ping archlinux.org</code></p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># ping archlinux.org
+</code></pre></div></div>
 
 <h3 id="update-clock">
 <a class="anchor" href="#update-clock" aria-hidden="true"><span class="octicon octicon-link"></span></a>Update Clock</h3>
@@ -260,11 +265,13 @@ Type exit, and then press Enter to close the Command Prompt window.</li>
 
 <p>Then enter enter the partitioning program <code class="language-plaintext highlighter-rouge">cfdisk</code></p>
 
-<p><code class="language-plaintext highlighter-rouge">cfdisk /dev/name_of_disk</code></p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># cfdisk /dev/name_of_disk
+</code></pre></div></div>
 
 <p>In my case it was</p>
 
-<p><code class="language-plaintext highlighter-rouge">cfdisk /dev/nvme1n1</code></p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># cfdisk /dev/nvme1n1
+</code></pre></div></div>
 
 <p><img src="https://i.imgur.com/oYL8Fgj.png" alt=""></p>
 
@@ -311,7 +318,8 @@ EFI_PARTITION should be the name of your EFI partition.</p>
 <h3 id="install-linux-and-essential-packages">
 <a class="anchor" href="#install-linux-and-essential-packages" aria-hidden="true"><span class="octicon octicon-link"></span></a>Install Linux and essential packages</h3>
 
-<p><code class="language-plaintext highlighter-rouge">pacstrap /mnt base linux linux-firmware</code></p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># pacstrap /mnt base linux linux-firmware
+</code></pre></div></div>
 
 <h3 id="configure-the-system">
 <a class="anchor" href="#configure-the-system" aria-hidden="true"><span class="octicon octicon-link"></span></a>Configure the system</h3>
@@ -329,7 +337,8 @@ EFI_PARTITION should be the name of your EFI partition.</p>
 
 <p>In my case (US Eastern) the command looks like this:</p>
 
-<p><code class="language-plaintext highlighter-rouge"># ln -sf /usr/share/zoneinfo/US/Eastern /etc/localtime</code></p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># ln -sf /usr/share/zoneinfo/US/Eastern /etc/localtime
+</code></pre></div></div>
 
 <p>While typing out a directory, you can press <code class="language-plaintext highlighter-rouge">Tab</code> to explore/autocomplete, which is useful in seeing different timezone options.</p>
 
@@ -346,15 +355,18 @@ EFI_PARTITION should be the name of your EFI partition.</p>
 
 <p>Then generate the locales with:</p>
 
-<p><code class="language-plaintext highlighter-rouge"># locale-gen</code></p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># locale-gen
+</code></pre></div></div>
 
 <p>Create the locale.conf file in /etc/</p>
 
-<p><code class="language-plaintext highlighter-rouge"># vim /etc/locale.conf</code></p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># vim /etc/locale.conf
+</code></pre></div></div>
 
 <p>And add this single line:</p>
 
-<p><code class="language-plaintext highlighter-rouge">LANG=en_US.UTF-8</code></p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>LANG=en_US.UTF-8
+</code></pre></div></div>
 
 <p><img src="https://i.imgur.com/ok9Dmm1.png" alt=""></p>
 
@@ -363,7 +375,8 @@ EFI_PARTITION should be the name of your EFI partition.</p>
 
 <p>Create the hostname file and edit it to set the name of your machine on the network.</p>
 
-<p><code class="language-plaintext highlighter-rouge"># vim /etc/hostname</code></p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># vim /etc/hostname
+</code></pre></div></div>
 
 <p>My hostname file looks like this:</p>
 
@@ -381,15 +394,18 @@ Make sure to tab once in between the ip’s and hostnames.</p>
 
 <p>Add a user to the system with this:</p>
 
-<p><code class="language-plaintext highlighter-rouge"># useradd -G wheel,audio,video -m USERNAME</code></p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># useradd -G wheel,audio,video -m USERNAME
+</code></pre></div></div>
 
 <p>Set that user’s password with:</p>
 
-<p><code class="language-plaintext highlighter-rouge"># passwd USERNAME</code></p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># passwd USERNAME
+</code></pre></div></div>
 
 <p>And set the root password with:</p>
 
-<p><code class="language-plaintext highlighter-rouge"># passwd</code></p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># passwd
+</code></pre></div></div>
 
 <h3 id="grub">
 <a class="anchor" href="#grub" aria-hidden="true"><span class="octicon octicon-link"></span></a>Grub</h3>
@@ -398,11 +414,13 @@ Make sure to tab once in between the ip’s and hostnames.</p>
 grub-install --target=x86_64-efi --efi-directory=/efi/ --bootloader-id=GRUB
 </code></pre></div></div>
 
-<p>Edit the /etc/default/grub file and add/uncomment 
-<code class="language-plaintext highlighter-rouge">GRUB_DISABLE_OS_PROBER=false</code></p>
+<p>Edit the /etc/default/grub file and add/uncomment</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>GRUB_DISABLE_OS_PROBER=false
+</code></pre></div></div>
 
-<p>Now enter: 
-<code class="language-plaintext highlighter-rouge"># grub-mkconfig -o /boot/grub/grub.cfg</code></p>
+<p>Now enter:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># grub-mkconfig -o /boot/grub/grub.cfg
+</code></pre></div></div>
 
 <h1 id="network-setup">
 <a class="anchor" href="#network-setup" aria-hidden="true"><span class="octicon octicon-link"></span></a>Network Setup</h1>
