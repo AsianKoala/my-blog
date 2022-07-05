@@ -67,22 +67,30 @@ Select the flash drive that has the Arch image and select that to boot from. The
 
 Enter iwctl with this:
 
-`# iwctl`
+```
+# iwctl
+```
 
 Then find your WiFi device from the device list:
 
-`[iwd]# device list`
+```
+[iwd]# device list
+```
 
 In my case, it was wlan60
 
 And get the network name:
 
-`[iwd]# station DEVICE-NAME scan`
-`[iwd]# station DEVICE-NAME get-networks`
+```
+[iwd]# station DEVICE-NAME scan
+[iwd]# station DEVICE-NAME get-networks
+```
 
 Finally, connect to the desired network:
 
-`[iwd]# station DEVICE-NAME connect NETWORK-NAME`
+```
+[iwd]# station DEVICE-NAME connect NETWORK-NAME
+```
 
 This will prompt you for the network password.
 
@@ -92,11 +100,13 @@ If you already know your device and network name, then simply enter this in the 
 
 To verify your connection, use `ping` 
 
-`# ping archlinux.org`
+```
+# ping archlinux.org
+```
 
 ### Update Clock
 
-`# timedatectl set-ntp true`
+```# timedatectl set-ntp true```
 
 
 ### Partition Disks
@@ -106,11 +116,15 @@ Find the name of the disk you wish to install Arch under.
 
 Then enter enter the partitioning program `cfdisk`
 
-`cfdisk /dev/name_of_disk`
+```
+# cfdisk /dev/name_of_disk
+```
 
 In my case it was 
 
-`cfdisk /dev/nvme1n1` 
+```
+# cfdisk /dev/nvme1n1
+```
 
 ![](https://i.imgur.com/oYL8Fgj.png)
 
@@ -157,7 +171,9 @@ EFI_PARTITION should be the name of your EFI partition.
 
 ### Install Linux and essential packages 
 
-`pacstrap /mnt base linux linux-firmware`
+```
+# pacstrap /mnt base linux linux-firmware
+```
 
 ### Configure the system 
 
@@ -175,7 +191,9 @@ EFI_PARTITION should be the name of your EFI partition.
 
 In my case (US Eastern) the command looks like this:
 
-`# ln -sf /usr/share/zoneinfo/US/Eastern /etc/localtime`
+```
+# ln -sf /usr/share/zoneinfo/US/Eastern /etc/localtime
+```
 
 While typing out a directory, you can press `Tab` to explore/autocomplete, which is useful in seeing different timezone options.
 
@@ -190,15 +208,21 @@ Edit /etc/locale.gen and uncomment en_US.UTF-8 UTF-8.
 
 Then generate the locales with:
 
-`# locale-gen`
+```
+# locale-gen
+```
 
 Create the locale.conf file in /etc/   
 
-`# vim /etc/locale.conf`
+```
+# vim /etc/locale.conf
+```
 
 And add this single line:
 
-`LANG=en_US.UTF-8`   
+```
+LANG=en_US.UTF-8
+```
 
 ![](https://i.imgur.com/ok9Dmm1.png)
 
@@ -207,7 +231,9 @@ And add this single line:
 
 Create the hostname file and edit it to set the name of your machine on the network.
 
-`# vim /etc/hostname`
+```
+# vim /etc/hostname
+```
 
 My hostname file looks like this:
 
@@ -224,15 +250,21 @@ Make sure to tab once in between the ip's and hostnames.
 
 Add a user to the system with this:
 
-`# useradd -G wheel,audio,video -m USERNAME`
+```
+# useradd -G wheel,audio,video -m USERNAME
+```
 
 Set that user's password with:
 
-`# passwd USERNAME`
+```
+# passwd USERNAME
+```
 
 And set the root password with:
 
-`# passwd`
+```
+# passwd
+```
 
 ### Grub 
 
@@ -242,10 +274,14 @@ grub-install --target=x86_64-efi --efi-directory=/efi/ --bootloader-id=GRUB
 ```
 
 Edit the /etc/default/grub file and add/uncomment 
-`GRUB_DISABLE_OS_PROBER=false`
+```
+GRUB_DISABLE_OS_PROBER=false
+```
 
 Now enter: 
-`# grub-mkconfig -o /boot/grub/grub.cfg`
+```
+# grub-mkconfig -o /boot/grub/grub.cfg
+```
 
 
 # Network Setup 

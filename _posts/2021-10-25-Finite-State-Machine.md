@@ -1,7 +1,7 @@
 ---
 toc: true
 layout: post
-description: Learn how to utilize Finite State Machines in Part 1
+description: Learn how to utilize Finite State Machines in FTC
 categories: [Robotics, Kotlin]
 title: Finite State Machines
 ---
