@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="twitter:card" content="summary_large_image" /><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>Dual Booting Arch Linux with a Windows 10 System | Neil Mehra</title>
+<meta name="generator" content="Jekyll v4.1.1" />
+<meta property="og:title" content="Dual Booting Arch Linux with a Windows 10 System" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Dualbooting Arch Linux with a Windows 10 System" />
+<meta property="og:description" content="Dualbooting Arch Linux with a Windows 10 System" />
+<link rel="canonical" href="https://asiankoala.github.io/my-blog/linux/2022/05/22/Dualbooting-Arch-Linux.html" />
+<meta property="og:url" content="https://asiankoala.github.io/my-blog/linux/2022/05/22/Dualbooting-Arch-Linux.html" />
+<meta property="og:site_name" content="Neil Mehra" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2022-05-22T00:00:00-05:00" />
+<script type="application/ld+json">
+{"url":"https://asiankoala.github.io/my-blog/linux/2022/05/22/Dualbooting-Arch-Linux.html","@type":"BlogPosting","headline":"Dual Booting Arch Linux with a Windows 10 System","dateModified":"2022-05-22T00:00:00-05:00","datePublished":"2022-05-22T00:00:00-05:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://asiankoala.github.io/my-blog/linux/2022/05/22/Dualbooting-Arch-Linux.html"},"description":"Dualbooting Arch Linux with a Windows 10 System","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/my-blog/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://asiankoala.github.io/my-blog/feed.xml" title="Neil Mehra" /><link rel="shortcut icon" type="image/x-icon" href="/my-blog/images/favicon.ico"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Primer/15.2.0/primer.css" integrity="sha512-xTz2ys4coGAOz8vuV1NcQBkgVmKhsSEtjbqyMJbBHRplFuvKIUo6xhLHpAyPt9mfR6twHJgn9OgVLuqOvjeBhg==" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/katex.min.css" integrity="sha512-h7nl+xz8wgDlNM4NqKEM4F1NkIRS17M9+uJwIGwuo8vGqIl4BhuCKdxjWEINm+xyrUjNCnK5dCrhM0sj+wTIXw==" crossorigin="anonymous" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/katex.min.js" integrity="sha512-/CMIhXiDA3m2c9kzRyd97MTb3MC6OVnx4TElQ7fkkoRghwDf6gi41gaT1PwF270W6+J60uTmwgeRpNpJdRV6sg==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/contrib/auto-render.min.js" integrity="sha512-Do7uJAaHZm5OLrIv/yN4w0iG1dbu01kzdMNnFfu/mAqgUk6Nniv2JYHcwH+cNwjqgLcqcuBBk+JRvprLVI8azg==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha512-0doc9hKxR3PYwso42RD1p5ySZpzzuDiOwMrdCEh2WdJZCjcmFKc/wEnL+z8fBQrnHoiNWbo+3fiGkOYXBdQp4A==" crossorigin="anonymous"></script>
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement( document.body, {
+        delimiters: [
+            {left: "$$", right: "$$", display: true},
+            {left: "[%", right: "%]", display: true},
+            {left: "$", right: "$", display: false}
+        ]}
+        );
+    });
+    </script>
+
+
+<script>
+function wrap_img(fn) {
+    if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
+        var elements = document.querySelectorAll(".post img");
+        Array.prototype.forEach.call(elements, function(el, i) {
+            if (el.getAttribute("title") && (el.className != "emoji")) {
+                const caption = document.createElement('figcaption');
+                var node = document.createTextNode(el.getAttribute("title"));
+                caption.appendChild(node);
+                const wrapper = document.createElement('figure');
+                wrapper.className = 'image';
+                el.parentNode.insertBefore(wrapper, el);
+                el.parentNode.removeChild(el);
+                wrapper.appendChild(el);
+                wrapper.appendChild(caption);
+            }
+        });
+    } else { document.addEventListener('DOMContentLoaded', fn); }
+}
+window.onload = wrap_img;
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function(){
+    // add link icon to anchor tags
+    var elem = document.querySelectorAll(".anchor-link")
+    elem.forEach(e => (e.innerHTML = '<i class="fas fa-link fa-xs"></i>'));
+    });
+</script>
+</head>
+<body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/my-blog/">Neil Mehra</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/my-blog/about/">About Me</a><a class="page-link" href="/my-blog/search/">Search</a><a class="page-link" href="/my-blog/categories/">Tags</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Dual Booting Arch Linux with a Windows 10 System</h1><p class="page-description">Dualbooting Arch Linux with a Windows 10 System</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2022-05-22T00:00:00-05:00" itemprop="datePublished">
+        May 22, 2022
+      </time>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      6 min read
+    
+</span></p>
+
+    
+      <p class="category-tags"><i class="fas fa-tags category-tags-icon"></i></i> 
+      
+        <a class="category-tags-link" href="/my-blog/categories/#Linux">Linux</a>
+        
+      
+      </p>
+    
+
+    </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <ul class="section-nav">
+<li class="toc-entry toc-h1"><a href="#pre-install">Pre Install</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#downloading-the-iso">Downloading the ISO</a></li>
+<li class="toc-entry toc-h3"><a href="#setting-up-windows-for-dualbooting">Setting up Windows for Dualbooting</a>
+<ul>
+<li class="toc-entry toc-h4"><a href="#creating-the-linux-partition">Creating the Linux partition</a></li>
+<li class="toc-entry toc-h4"><a href="#disabling-windows-settings">Disabling Windows Settings</a>
+<ul>
+<li class="toc-entry toc-h5"><a href="#uefi-secure-boot">UEFI Secure Boot</a></li>
+<li class="toc-entry toc-h5"><a href="#fast-boot-and-hibernation">Fast Boot and Hibernation</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#installing-arch">Installing Arch</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#connect-to-the-internet">Connect to the Internet</a></li>
+<li class="toc-entry toc-h3"><a href="#update-clock">Update Clock</a></li>
+<li class="toc-entry toc-h3"><a href="#partition-disks">Partition Disks</a></li>
+<li class="toc-entry toc-h3"><a href="#mount-partitions">Mount Partitions</a></li>
+<li class="toc-entry toc-h3"><a href="#install-linux-and-essential-packages">Install Linux and essential packages</a></li>
+<li class="toc-entry toc-h3"><a href="#configure-the-system">Configure the system</a>
+<ul>
+<li class="toc-entry toc-h5"><a href="#set-the-time-zone">Set the time zone</a></li>
+<li class="toc-entry toc-h5"><a href="#install-an-editor">Install an editor</a></li>
+<li class="toc-entry toc-h5"><a href="#set-locale">Set Locale</a></li>
+<li class="toc-entry toc-h5"><a href="#hostname">Hostname</a></li>
+<li class="toc-entry toc-h4"><a href="#user">User</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h3"><a href="#grub">Grub</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#network-setup">Network Setup</a></li>
+</ul><h1 id="pre-install">
+<a class="anchor" href="#pre-install" aria-hidden="true"><span class="octicon octicon-link"></span></a>Pre Install</h1>
+
+<h3 id="downloading-the-iso">
+<a class="anchor" href="#downloading-the-iso" aria-hidden="true"><span class="octicon octicon-link"></span></a>Downloading the ISO</h3>
+<p>Head over to <a href="https://archlinux.org/download/">the arch download page</a> and download the ISO using either a magnet link if you have a torrent client,
+or directly from an appropriate mirror site</p>
+
+<p>Once it’s been downloaded, burn the image onto a flash drive using <a href="https://rufus.ie/en/">rufus</a><br>
+From the ArchWiki:</p>
+<blockquote>
+  <p><code class="language-plaintext highlighter-rouge">Note: If the USB drive does not boot properly using the default ISO Image mode, DD Image mode should be used instead. 
+To switch this mode on, select GPT from the Partition scheme drop-down menu. After clicking START you will get the mode selection dialog, select DD Image mode.</code></p>
+</blockquote>
+
+<h3 id="setting-up-windows-for-dualbooting">
+<a class="anchor" href="#setting-up-windows-for-dualbooting" aria-hidden="true"><span class="octicon octicon-link"></span></a>Setting up Windows for Dualbooting</h3>
+
+<h4 id="creating-the-linux-partition">
+<a class="anchor" href="#creating-the-linux-partition" aria-hidden="true"><span class="octicon octicon-link"></span></a>Creating the Linux partition</h4>
+<p>Search for “Disk Management” and hit enter. This should pop up.
+<img src="https://i.imgur.com/BAYKGAs.png" alt="disk management"></p>
+
+<p>Right-click on the partition of the disk that you wish to install Arch under. 
+In cases with a single-disk system, this would simply be your (C:) partition under disk 0.
+Then click “Shrink Volume”, and allocate however much space you wish Arch to use.
+This can be changed later using GParted, so don’t fret too much about it’s initial size.
+If Windows is refusing to shrink your disk despite having enough free space, your best bet would be using GParted or another partition management software to handle the creation of your Linux partition.
+<img src="https://i.imgur.com/tnxbj30.png" alt="right click dialog"></p>
+
+<h4 id="disabling-windows-settings">
+<a class="anchor" href="#disabling-windows-settings" aria-hidden="true"><span class="octicon octicon-link"></span></a>Disabling Windows Settings</h4>
+<p>Before Arch is installed, several Windows settings must be disabled to allow the 
+computer to safely and reliably boot into Arch.</p>
+
+<h5 id="uefi-secure-boot">
+<a class="anchor" href="#uefi-secure-boot" aria-hidden="true"><span class="octicon octicon-link"></span></a>UEFI Secure Boot</h5>
+<p>This is motherboard manufacturer-specific. Generally you will need to enter your BIOS, find a setting for “Secure Boot”, and disable it.</p>
+
+<h5 id="fast-boot-and-hibernation">
+<a class="anchor" href="#fast-boot-and-hibernation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Fast Boot and Hibernation</h5>
+<p>Open the Control Panel and go to Power Options -&gt; Choose what the power buttons do -&gt; uncheck “Turn on fast startup (recommended)”</p>
+
+<p><img src="https://help.uaudio.com/hc/en-us/article_attachments/206772223/powerbuttons.png" alt="fast startup"></p>
+
+<p>Next is to disable hibernation. From the Microsoft Docs:</p>
+
+<blockquote>
+  <ol>
+    <li>Press the Windows button on the keyboard to open Start menu or Start screen.</li>
+    <li>Search for cmd. In the search results list, right-click Command Prompt, and then select Run as Administrator.</li>
+    <li>When you are prompted by User Account Control, select Continue.</li>
+    <li>At the command prompt, type powercfg.exe /hibernate off, and then press Enter.
+Type exit, and then press Enter to close the Command Prompt window.</li>
+  </ol>
+</blockquote>
+
+<p><img src="https://www.hellotech.com/guide/wp-content/uploads/2020/05/how-to-disable-hibernate-mode.jpg" alt="disable hibernation"></p>
+
+<p>Once all of that is finished, Arch can now be installed.</p>
+
+<h1 id="installing-arch">
+<a class="anchor" href="#installing-arch" aria-hidden="true"><span class="octicon octicon-link"></span></a>Installing Arch</h1>
+<p>Reboot your computer and enter the boot menu during startup. The key to enter varies depending on your motherboard manufacturer. For my MSI board, it was F11.</p>
+
+<p>Select the flash drive that has the Arch image and select that to boot from. Then select the first option in the Arch install menu.</p>
+
+<p><img src="https://i.imgur.com/U0u1e5O.png" alt=""></p>
+
+<h3 id="connect-to-the-internet">
+<a class="anchor" href="#connect-to-the-internet" aria-hidden="true"><span class="octicon octicon-link"></span></a>Connect to the Internet</h3>
+
+<p>Enter iwctl with this:</p>
+
+<p><code class="language-plaintext highlighter-rouge"># iwctl</code></p>
+
+<p>Then find your WiFi device from the device list:</p>
+
+<p><code class="language-plaintext highlighter-rouge">[iwd]# device list</code></p>
+
+<p>In my case, it was wlan60</p>
+
+<p>And get the network name:</p>
+
+<p><code class="language-plaintext highlighter-rouge">[iwd]# station DEVICE-NAME scan</code>
+<code class="language-plaintext highlighter-rouge">[iwd]# station DEVICE-NAME get-networks</code></p>
+
+<p>Finally, connect to the desired network:</p>
+
+<p><code class="language-plaintext highlighter-rouge">[iwd]# station DEVICE-NAME connect NETWORK-NAME</code></p>
+
+<p>This will prompt you for the network password.</p>
+
+<p>If you already know your device and network name, then simply enter this in the command line.</p>
+
+<p><code class="language-plaintext highlighter-rouge"># iwctl --passphrase NETWORK-PASSWORD station DEVICE-NAME connect NETWORK-NAME</code></p>
+
+<p>To verify your connection, use <code class="language-plaintext highlighter-rouge">ping</code></p>
+
+<p><code class="language-plaintext highlighter-rouge"># ping archlinux.org</code></p>
+
+<h3 id="update-clock">
+<a class="anchor" href="#update-clock" aria-hidden="true"><span class="octicon octicon-link"></span></a>Update Clock</h3>
+
+<p><code class="language-plaintext highlighter-rouge"># timedatectl set-ntp true</code></p>
+
+<h3 id="partition-disks">
+<a class="anchor" href="#partition-disks" aria-hidden="true"><span class="octicon octicon-link"></span></a>Partition Disks</h3>
+<p>Find the name of the disk you wish to install Arch under.</p>
+
+<p><code class="language-plaintext highlighter-rouge"># fdisk -l</code> or <code class="language-plaintext highlighter-rouge"># lsblk</code></p>
+
+<p>Then enter enter the partitioning program <code class="language-plaintext highlighter-rouge">cfdisk</code></p>
+
+<p><code class="language-plaintext highlighter-rouge">cfdisk /dev/name_of_disk</code></p>
+
+<p>In my case it was</p>
+
+<p><code class="language-plaintext highlighter-rouge">cfdisk /dev/nvme1n1</code></p>
+
+<p><img src="https://i.imgur.com/oYL8Fgj.png" alt=""></p>
+
+<p>Hit the arrow keys to navigate to the table entry labeled “Free Space”.</p>
+
+<p>First create the swap partition. There are various takes on how much swap size you should allow, but for system with 16GB ram 8GB should be perfectly fine.</p>
+
+<p>Click enter on the “Free Space” entry and allocate 8GB by typing “8G”.
+Then move up to the newly created partition with the partition type “Linux filesystem”, and use the right arrow key to change the type of the partition.
+Then hit enter and select the “Linux Swap” option.</p>
+
+<p><img src="https://i.imgur.com/9swtrjY.png" alt=""></p>
+
+<p>Then scroll down to the “Free Space” entry again and allocate the rest to root partition.</p>
+
+<p>Your screen should look like this.</p>
+
+<p><img src="https://i.imgur.com/6AXJ8CH.png" alt=""></p>
+
+<p>Before writing the changes to the disk, note down the root partition, swap partition, and “EFI System” partition names.</p>
+
+<p>In the screenshot above, those would be /dev/sda5 and /dev/sda6 respectively.</p>
+
+<p>In my case, they were /dev/nvme0n1np3 and /dev/nvme0n1p4.</p>
+
+<p>You can view disk/partition information after this by using the <code class="language-plaintext highlighter-rouge">fdisk -l</code> or <code class="language-plaintext highlighter-rouge">lsblk</code> commands.</p>
+
+<p>Double check that everything is correct. Now move over to the “Write” option and select it.</p>
+
+<h3 id="mount-partitions">
+<a class="anchor" href="#mount-partitions" aria-hidden="true"><span class="octicon octicon-link"></span></a>Mount Partitions</h3>
+<p>Now setup the partitions with the following commands. <br>
+ROOT_PARTITION should be the name of your root partition.<br>
+SWAP_PARTITION should be the name of your swap partition.<br>
+EFI_PARTITION should be the name of your EFI partition.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># mkfs.ext4 /dev/ROOT_PARTITION
+# mkswap /dev/SWAP_PARTITION
+# swapon /dev/ROOT_PARTITION
+# mount /dev/ROOT_PARTITION /mnt 
+# mount --mkdir /dev/EFI_PARTITION /mnt/efi
+</code></pre></div></div>
+
+<h3 id="install-linux-and-essential-packages">
+<a class="anchor" href="#install-linux-and-essential-packages" aria-hidden="true"><span class="octicon octicon-link"></span></a>Install Linux and essential packages</h3>
+
+<p><code class="language-plaintext highlighter-rouge">pacstrap /mnt base linux linux-firmware</code></p>
+
+<h3 id="configure-the-system">
+<a class="anchor" href="#configure-the-system" aria-hidden="true"><span class="octicon octicon-link"></span></a>Configure the system</h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># genfstab -U /mnt &gt;&gt; /mnt/etc/fstab
+# arch-chroot /mnt
+</code></pre></div></div>
+
+<h5 id="set-the-time-zone">
+<a class="anchor" href="#set-the-time-zone" aria-hidden="true"><span class="octicon octicon-link"></span></a>Set the time zone</h5>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># ln -sf /usr/share/zoneinfo/REGION_HERE/CITY_HERE /etc/localtime
+# hwclock --systohc
+</code></pre></div></div>
+
+<p>In my case (US Eastern) the command looks like this:</p>
+
+<p><code class="language-plaintext highlighter-rouge"># ln -sf /usr/share/zoneinfo/US/Eastern /etc/localtime</code></p>
+
+<p>While typing out a directory, you can press <code class="language-plaintext highlighter-rouge">Tab</code> to explore/autocomplete, which is useful in seeing different timezone options.</p>
+
+<h5 id="install-an-editor">
+<a class="anchor" href="#install-an-editor" aria-hidden="true"><span class="octicon octicon-link"></span></a>Install an editor</h5>
+
+<p><code class="language-plaintext highlighter-rouge"># pacman -Sy vim</code> If you’re familiar with vim, or<br>
+<code class="language-plaintext highlighter-rouge"># pacman -Sy nano</code> For a simpler text editor.</p>
+
+<h5 id="set-locale">
+<a class="anchor" href="#set-locale" aria-hidden="true"><span class="octicon octicon-link"></span></a>Set Locale</h5>
+
+<p>Edit /etc/locale.gen and uncomment en_US.UTF-8 UTF-8.</p>
+
+<p>Then generate the locales with:</p>
+
+<p><code class="language-plaintext highlighter-rouge"># locale-gen</code></p>
+
+<p>Create the locale.conf file in /etc/</p>
+
+<p><code class="language-plaintext highlighter-rouge"># vim /etc/locale.conf</code></p>
+
+<p>And add this single line:</p>
+
+<p><code class="language-plaintext highlighter-rouge">LANG=en_US.UTF-8</code></p>
+
+<p><img src="https://i.imgur.com/ok9Dmm1.png" alt=""></p>
+
+<h5 id="hostname">
+<a class="anchor" href="#hostname" aria-hidden="true"><span class="octicon octicon-link"></span></a>Hostname</h5>
+
+<p>Create the hostname file and edit it to set the name of your machine on the network.</p>
+
+<p><code class="language-plaintext highlighter-rouge"># vim /etc/hostname</code></p>
+
+<p>My hostname file looks like this:</p>
+
+<p><img src="https://i.imgur.com/SeRPkKK.png" alt=""></p>
+
+<p>Now edit the /etc/hosts file to look like this:</p>
+
+<p><img src="https://i.imgur.com/N6Lk35d.png" alt=""></p>
+
+<p>Replace “koawa” with your hostname that you just set.
+Make sure to tab once in between the ip’s and hostnames.</p>
+
+<h4 id="user">
+<a class="anchor" href="#user" aria-hidden="true"><span class="octicon octicon-link"></span></a>User</h4>
+
+<p>Add a user to the system with this:</p>
+
+<p><code class="language-plaintext highlighter-rouge"># useradd -G wheel,audio,video -m USERNAME</code></p>
+
+<p>Set that user’s password with:</p>
+
+<p><code class="language-plaintext highlighter-rouge"># passwd USERNAME</code></p>
+
+<p>And set the root password with:</p>
+
+<p><code class="language-plaintext highlighter-rouge"># passwd</code></p>
+
+<h3 id="grub">
+<a class="anchor" href="#grub" aria-hidden="true"><span class="octicon octicon-link"></span></a>Grub</h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pacman -S grub efibootmgr os-prober
+grub-install --target=x86_64-efi --efi-directory=/efi/ --bootloader-id=GRUB
+</code></pre></div></div>
+
+<p>Edit the /etc/default/grub file and add/uncomment 
+<code class="language-plaintext highlighter-rouge">GRUB_DISABLE_OS_PROBER=false</code></p>
+
+<p>Now enter: 
+<code class="language-plaintext highlighter-rouge"># grub-mkconfig -o /boot/grub/grub.cfg</code></p>
+
+<h1 id="network-setup">
+<a class="anchor" href="#network-setup" aria-hidden="true"><span class="octicon octicon-link"></span></a>Network Setup</h1>
+<p>This is how I set up my wireless network using <code class="language-plaintext highlighter-rouge">NetworkManager</code>. For a wired connection, check the <a href="https://wiki.archlinux.org/title/Network_configuration/Ethernet">ArchWiki Ethernet Page</a></p>
+
+<p>If you wish to use another wireless network configuration, again, check the <a href="https://wiki.archlinux.org/title/Network_configuration/Wireless">ArchWiki Wireless Page</a></p>
+
+<p>Install NetworkManager and reboot your system.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># pacman -S networkmanager
+# exit 
+# reboot 
+</code></pre></div></div>
+
+<p>You should see the GRUB menu on boot. If you don’t, then reorder the boot priority of your system through the BIOS. Now press enter on “Arch Linux” (or just wait, as it will automatically boot into Arch after some time).</p>
+
+<p>Now enter these commands to setup your network.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ nmcli d 
+$ nmcli r wifi on 
+$ nmcli d wifi list 
+$ nmcli d wifi connect WIFI_SSID_HERE password --YOUR_PASSWORD_HERE
+</code></pre></div></div>
+
+<p>And now Arch has been fully installed with networking capabilities.</p>
+
+<p>To learn about how to make your Arch look similar to mine, shown below, head over to my <a href="https://github.com/AsianKoala/dotfiles">dotfiles</a> or read some of my other Arch Linux blog posts.</p>
+
+<p><img src="https://i.imgur.com/kpwqPUQ.png" alt="my arch rice"></p>
+
+
+  </div><a class="u-url" href="/my-blog/linux/2022/05/22/Dualbooting-Arch-Linux.html" hidden></a>
+</article>
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/my-blog/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="/my-blog/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/my-blog/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
+      </div>
+      <div class="footer-col">
+        <p></p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"><li><a rel="me" href="https://github.com/fastai" target="_blank" title="fastai"><svg class="svg-icon grey"><use xlink:href="/my-blog/assets/minima-social-icons.svg#github"></use></svg></a></li><li><a rel="me" href="https://twitter.com/fastdotai" target="_blank" title="fastdotai"><svg class="svg-icon grey"><use xlink:href="/my-blog/assets/minima-social-icons.svg#twitter"></use></svg></a></li></ul>
+</div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
