@@ -3,7 +3,7 @@ toc: true
 layout: post
 description: History of my experiences going through the keyboard hobby
 categories: [Keyboards, Computers]
-title: My endeavours in the keyboard hobby
+title: Custom Keyboards
 ---
 
 ## Introduction 
