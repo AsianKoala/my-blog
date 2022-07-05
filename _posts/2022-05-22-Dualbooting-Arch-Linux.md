@@ -3,7 +3,7 @@ toc: true
 layout: post
 description: Dualbooting Arch Linux with a Windows 10 System
 categories: [Linux]
-title: Dual Booting Arch Linux with a Windows 10 System Part 1: Installing Arch
+title: Dual Booting Arch Linux with a Windows 10 System
 ---
 # Pre Install
 
